@@ -1,0 +1,18 @@
+.preview-collection{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+
+    .preview-title{
+        font-size: 28px;
+        margin-bottom: 25px;
+        text-align: center;
+        background-color:#888888;
+        padding: 8px;
+    }
+
+    .preview-items{
+        display: flex;
+        justify-content: space-between;
+    }
+}
