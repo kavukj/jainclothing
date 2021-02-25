@@ -1,0 +1,33 @@
+.header{
+    height: 70px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+
+    .logo{
+        
+        padding: 5px 15px;
+        text-decoration: none;
+
+        img{
+            height: 100%;
+            width: 80px;
+            border-radius: 50%;
+            border: 2px groove rgb(214, 116, 121);
+        } 
+    }
+
+    .options{
+        width: 50%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        .option{
+            padding:5px 15px;
+            font-size: 20px;
+        }
+    }
+}
