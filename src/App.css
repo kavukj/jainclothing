@@ -8,3 +8,7 @@ a{
     color: black;
     font-size: larger;
 }
+
+*{
+    box-sizing: border-box ;
+}
