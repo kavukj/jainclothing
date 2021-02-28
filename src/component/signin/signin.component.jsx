@@ -27,7 +27,7 @@ class SignIn extends React.Component{
         const {name,value}= event.target;
         this.setState({ [name]:value });
         //Here we are setting state dynamically. Means name will get value of input element name defined in html
-        //If name is emaail,email state will be set to value
+        //If name is email,email state will be set to value
         //Is name is password, password state will change to value
     }
 

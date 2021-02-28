@@ -4,7 +4,7 @@ import HomePage from './homepage/homepage.component';
 import Shop from './component/shop/shop.component';
 import Header from './component/header/header.component';
 import Sign_In_Up from './component/signinup/signinup.component';
-import { auth } from './firebase/firebase.utils';
+import { auth, createUserProfileDoc } from './firebase/firebase.utils';
 import { Component } from 'react';
 
 //function App() {
@@ -22,9 +22,33 @@ class App extends Component{
 
   componentDidMount(){
     //to fetch the authentication state,we have a firebase function which takes a function with parameter as the user who changed the auth state.
-    auth.onAuthStateChanged(user => {
-      this.setState({currentUser:user});
-      console.log(user);
+    auth.onAuthStateChanged(async user => {
+      //createUserProfileDoc(user);
+      /*this.setState({
+        currentUser:user
+      })*/
+      //Set state using firebase data.
+      if(user){
+        const userRef = await createUserProfileDoc(user);
+        console.log("Before sign in ",this.state);
+        //This have a function to read snapshot inside reference whihc returns snapshot object.
+        userRef.onSnapshot(snapShot => {
+          this.setState({
+            currentUser:{
+              id:snapShot.id,
+              ...snapShot.data() //to save other data
+            }
+          },()=>{
+            console.log("After sign in ",this.state);
+          });
+        });
+        
+      }
+      else{
+        this.setState({currentUser:user});
+        console.log("After sign out ",this.state);
+      }
+      
     })
   }
 
