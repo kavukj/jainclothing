@@ -8,7 +8,7 @@ class SignUp extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            name:"",
+            displayName:"",
             email:"",
             password:"",
             confirmPass:""
@@ -17,18 +17,20 @@ class SignUp extends React.Component{
         this.handleChange=this.handleChange.bind(this);
     }
 
-    handleSubmit(event){
+    
+    async handleSubmit(event){
         event.preventDefault();
-        const { name,email,password,confirmPass } = this.state;
-        if(password != confirmPass){
+        const { displayName,email,password,confirmPass } = this.state;
+        if(password !== confirmPass){
             alert("Password should match Confirm Password");
             return;
         }
         try{
-            const {user} = auth.createUserWithEmailAndPassword(email,password);
-            createUserProfileDoc(user, {name});
+            const {user} = await auth.createUserWithEmailAndPassword(email,password);
+            console.log(user);
+            await createUserProfileDoc(user, {displayName});
             this.setState({
-                name:"",
+                displayName:"",
                 email:"",
                 password:"",
                 confirmPass:""
@@ -40,6 +42,7 @@ class SignUp extends React.Component{
     handleChange(event){
         const { name, value } = event.target;
         this.setState({[name]:value});
+        console.log(this.state);
     }
 
     render(){
@@ -48,7 +51,7 @@ class SignUp extends React.Component{
                 <h1 className="title">New User? Sign Up</h1>
                 <form onSubmit={this.handleSubmit}>
                     <label className="label">Name: </label>
-                    <FormInput type="text" onChange={this.handleChange} name="name" value={this.state.name} required/>
+                    <FormInput type="text" onChange={this.handleChange} name="displayName" value={this.state.displayName} required/>
                     <label className="label">Email: </label>
                     <FormInput type="email" onChange={this.handleChange} name="email" value={this.state.email} required/>
                     <label className="label">Password: </label>

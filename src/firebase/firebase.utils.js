@@ -36,15 +36,15 @@ export const createUserProfileDoc = async(userAuth, additionalData) => {
     //This condition prevents creation of same user again or prevent updating information if signed in again
     if(!snapShot.exists){
         const { displayName, email } = userAuth;
-        const createAt = new Date();
+        const createdAt = new Date();
 
         try{
             await userRef.set({
                 displayName,
                 email,
-                createAt,
+                createdAt,
                 ...additionalData
-            })
+            },{ merge:true })
         }catch(error){
             console.log("Error in creating user at databse",error.message);
         }
