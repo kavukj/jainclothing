@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import { auth } from '../../firebase/firebase.utils';
 import { connect } from 'react-redux';
+import CartIcon from '../cart-icon/cart-icon.component';
+import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 
-const Header = ({currentUser}) => (
+const Header = ({currentUser,hidden}) => (
     <div className="header">
         <div className="logo">
             <Link to="/">
@@ -27,11 +29,21 @@ const Header = ({currentUser}) => (
                 :
                 null
             }
+            <CartIcon />
+            {
+                 hidden ? null:<CartDropdown />
+            }
         </div>
     </div>
 )
 //this name can be anything but this is standard with redux
-const mapPropsToState = state => ({
+/**const mapPropsToState = state => ({
     currentUser:state.user.currentUser
+})*/
+
+//this is the method to destruct nested components: {user:{currentUser} means user.currentUser
+const mapPropsToState = ({user:{currentUser},cart:{hidden}})=>({
+    currentUser,
+    hidden
 })
 export default connect(mapPropsToState)(Header);
