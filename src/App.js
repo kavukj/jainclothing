@@ -1,5 +1,5 @@
 import './App.css';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch , Redirect } from 'react-router-dom';
 import HomePage from './homepage/homepage.component';
 import Shop from './component/shop/shop.component';
 import Header from './component/header/header.component';
@@ -70,15 +70,23 @@ class App extends Component{
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/shop" component={Shop} />
-          <Route exact path="/signinup" component={Sign_In_Up} />
+          <Route exact path="/signinup" render={()=>
+            this.props.currentUser ? (<Redirect to ='/' />) : 
+            (<Sign_In_Up />)
+          }  />
         </Switch>
       </div>
     );
   }
 }
 
+//Now a problem is that, we can access signup page even after login. So we need redirect for that.
+//For redirect, we need to pass value of state. So we need mapStateToProps
+const mapStateToProps = (state) => ({
+  currentUser:state.user.currentUser
+});
 const mapDispatchToProps = dispatch => ({
   //We pass the prop name that we want to dispatch the action
   setUser:user => dispatch(setCurrentUser(user))
 })
-export default connect(null,mapDispatchToProps)(App);
+export default connect(mapStateToProps,mapDispatchToProps)(App);
