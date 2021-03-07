@@ -7,7 +7,10 @@ import Sign_In_Up from './component/signinup/signinup.component';
 import { auth, createUserProfileDoc } from './firebase/firebase.utils';
 import { Component } from 'react';
 import { setCurrentUser } from './redux/users/user.action';
+import Checkout from '../src/pages/checkout/checkout.component';
 import { connect } from 'react-redux';
+import { selectCurrentUser } from './redux/users/user.selector';
+import { createStructuredSelector } from 'reselect';
 
 //function App() {
   //We will make it class component as we need state to store user login state.
@@ -74,6 +77,7 @@ class App extends Component{
             this.props.currentUser ? (<Redirect to ='/' />) : 
             (<Sign_In_Up />)
           }  />
+          <Route exact path="/checkout" component={Checkout} />
         </Switch>
       </div>
     );
@@ -82,8 +86,8 @@ class App extends Component{
 
 //Now a problem is that, we can access signup page even after login. So we need redirect for that.
 //For redirect, we need to pass value of state. So we need mapStateToProps
-const mapStateToProps = (state) => ({
-  currentUser:state.user.currentUser
+const mapStateToProps = createStructuredSelector({
+  currentUser:selectCurrentUser
 });
 const mapDispatchToProps = dispatch => ({
   //We pass the prop name that we want to dispatch the action

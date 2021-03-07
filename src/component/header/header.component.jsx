@@ -6,6 +6,9 @@ import { auth } from '../../firebase/firebase.utils';
 import { connect } from 'react-redux';
 import CartIcon from '../cart-icon/cart-icon.component';
 import CartDropdown from '../cart-dropdown/cart-dropdown.component';
+import { selectCartHidden } from '../../redux/cart/cart.selectors';
+import { selectCurrentUser } from '../../redux/users/user.selector';
+import { createStructuredSelector } from 'reselect';
 
 const Header = ({currentUser,hidden}) => (
     <div className="header">
@@ -30,6 +33,7 @@ const Header = ({currentUser,hidden}) => (
                 null
             }
             <CartIcon />
+            {console.log(hidden)}
             {
                  hidden ? null:<CartDropdown />
             }
@@ -42,8 +46,8 @@ const Header = ({currentUser,hidden}) => (
 })*/
 
 //this is the method to destruct nested components: {user:{currentUser} means user.currentUser
-const mapPropsToState = ({user:{currentUser},cart:{hidden}})=>({
-    currentUser,
-    hidden
+const mapPropsToState = createStructuredSelector({
+    currentUser:selectCurrentUser,
+    hidden:selectCartHidden
 })
 export default connect(mapPropsToState)(Header);

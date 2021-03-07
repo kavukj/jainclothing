@@ -18,6 +18,13 @@ const cartReducer = (state = INITIAL_STATE, action) => {
                 //...state.cartItems helps us keep previous items and add new items as well
                 cartItems: addItemToCart(state.cartItems,action.payload)
             }
+        case 'CLEAR_ITEM':
+            return{
+                ...state,
+                cartItems:state.cartItems.filter(
+                    cartItem => cartItem.id != action.payload.id
+                )
+            }
         default:
             return state;
     }
