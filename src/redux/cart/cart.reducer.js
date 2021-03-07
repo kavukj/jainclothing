@@ -1,4 +1,5 @@
 import { addItemToCart } from './cart.utils';
+import { decreaseItemFromCart } from './cart.utils';
 
 const INITIAL_STATE = {
     hidden: true,
@@ -17,6 +18,16 @@ const cartReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 //...state.cartItems helps us keep previous items and add new items as well
                 cartItems: addItemToCart(state.cartItems,action.payload)
+            }
+        case 'DECREASE_ITEM':
+            return{
+                ...state,
+                cartItems:decreaseItemFromCart(state.cartItems,action.payload)
+            }
+        case 'INCREASE_ITEM':
+            return{
+                ...state,
+                cartItems:addItemToCart(state.cartItems,action.payload)
             }
         case 'CLEAR_ITEM':
             return{

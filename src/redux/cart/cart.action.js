@@ -8,6 +8,16 @@ export const addItem = item => ({
     payload: item
 });
 
+export const decreaseItem = item => ({
+    type:'DECREASE_ITEM',
+    payload: item
+});
+
+export const increaseItem = item => ({
+    type:'INCREASE_ITEM',
+    payload: item
+});
+
 export const clearItem = item => ({
     type:'CLEAR_ITEM',
     payload: item
