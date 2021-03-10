@@ -10,7 +10,9 @@ import { selectCartHidden } from '../../redux/cart/cart.selectors';
 import { selectCurrentUser } from '../../redux/users/user.selector';
 import { createStructuredSelector } from 'reselect';
 
-const Header = ({currentUser,hidden}) => (
+const Header = ({currentUser,hidden}) => {
+    console.log(currentUser)
+    return (
     <div className="header">
         <div className="logo">
             <Link to="/">
@@ -39,15 +41,15 @@ const Header = ({currentUser,hidden}) => (
             }
         </div>
     </div>
-)
+)}
 //this name can be anything but this is standard with redux
 /**const mapPropsToState = state => ({
     currentUser:state.user.currentUser
 })*/
 
 //this is the method to destruct nested components: {user:{currentUser} means user.currentUser
-const mapPropsToState = createStructuredSelector({
-    currentUser:selectCurrentUser,
-    hidden:selectCartHidden
+const mapPropsToState = (state)=> ({
+    currentUser:state.user.currentUser,
+    hidden:selectCartHidden(state)
 })
 export default connect(mapPropsToState)(Header);
