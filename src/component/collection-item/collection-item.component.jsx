@@ -4,8 +4,8 @@ import Button from '../button/button.component';
 import {connect} from 'react-redux';
 import { addItem } from '../../redux/cart/cart.action';
 
-const CollectionItem = ({items,addItem}) => {
-    const {title,name,price,imageUrl} = items;
+const CollectionItem = ({item,addItem}) => {
+    const {name,price,imageUrl} = item;
     return(
         <div className="collection-item">
             <div className="item-image" style={{
@@ -15,7 +15,7 @@ const CollectionItem = ({items,addItem}) => {
                 <span className="name">{name}</span>
                 <span className="price">${price}</span>
             </div>
-            <Button inverted type="submit" onClick={()=>addItem(items)}>Add To Cart</Button>
+            <Button inverted type="submit" onClick={()=>addItem(item)}>Add To Cart</Button>
         </div>
     )
 }

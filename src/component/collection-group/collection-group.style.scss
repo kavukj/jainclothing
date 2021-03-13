@@ -1,9 +1,9 @@
-.preview-collection{
+.collection-group{
     display: flex;
     flex-direction: column;
     margin-bottom: 30px;
 
-    .preview-title{
+    .collection-group-title{
         font-size: 28px;
         margin-bottom: 25px;
         text-align: center;
@@ -11,7 +11,7 @@
         padding: 8px;
     }
 
-    .preview-items{
+    .collection-group-items{
         display: flex;
         justify-content: space-between;
     }

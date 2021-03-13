@@ -1,4 +1,3 @@
-import { createStore } from 'redux';
 import { createSelector } from 'reselect';
 
 //input selector that returns cart from state

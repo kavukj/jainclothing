@@ -1,9 +1,9 @@
 import './App.css';
 import { Route, Switch , Redirect } from 'react-router-dom';
 import HomePage from './pages/homepage/homepage.component';
-import Shop from './component/shop/shop.component';
+import Shop from './pages/shop/shop.component';
 import Header from './component/header/header.component';
-import Sign_In_Up from './component/signinup/signinup.component';
+import SignInUp from './component/signinup/signinup.component';
 import { auth, createUserProfileDoc } from './firebase/firebase.utils';
 import { Component } from 'react';
 import { setCurrentUser } from './redux/users/user.action';
@@ -72,10 +72,10 @@ class App extends Component{
         <Header />
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route exact path="/shop" component={Shop} />
+          <Route path="/shop" component={Shop} />
           <Route exact path="/signinup" render={()=>
             this.props.currentUser ? (<Redirect to ='/' />) : 
-            (<Sign_In_Up />)
+            (<SignInUp />)
           }  />
           <Route exact path="/checkout" component={Checkout} />
         </Switch>
