@@ -2,12 +2,15 @@
     height: 10vh;
     width: 100%;
     display: flex;
+    color:#fff;
+    background: linear-gradient(to bottom left, rgb(91, 90, 95) 20%, rgb(10, 10, 10) 100%);
     justify-content: space-between;
     margin-bottom: 1vh;
 
     .logo{
-        
-        padding: 1vh 0.8vw;
+        background-color: #fff;
+        border-radius: 50%;
+        margin: 1vh 1vw;
         text-decoration: none;
 
         img{
@@ -26,8 +29,13 @@
         justify-content: flex-end;
 
         .option{
+            color:#fff;
             padding:1vh 1vw;
             font-size: 1.2rem;
+            &:hover{
+                font-size: 1.4rem;
+                text-decoration: underline;
+            }
         }
     }
 }
