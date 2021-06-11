@@ -2,25 +2,30 @@ import './category.styles.scss';
 import { selectCategory } from '../../redux/shop/shop.selector';
 import { connect } from 'react-redux';
 import CollectionItem from '../../component/collection-item/collection-item.component';
+import {
+    CollectionPageContainer,
+    CollectionTitle,
+    CollectionItemsContainer
+} from './category.styles';
 
-const CategoryPage = ({categoryCollection}) => {
-    const { title,items} = categoryCollection; 
-    return(
-        <div className="category-page">
-            <h2 className="title">{title}</h2>
-            <div className="items">
+const CategoryPage = ({ categoryCollection }) => {
+    const { title, items } = categoryCollection;
+    return (
+        <CollectionPageContainer>
+            <CollectionTitle>{title}</CollectionTitle>
+            <CollectionItemsContainer>
                 {
-                    items.map(item=>(
+                    items.map(item => (
                         <CollectionItem key={item.id} item={item} />
                     ))
                 }
-            </div>
-        </div>
+            </CollectionItemsContainer>
+        </CollectionPageContainer>
     )
 }
 //Here we have passed state because this selector needs a part of state on url parameter
-const mapStateToProps = (state,ownProps) => ({
-    categoryCollection : selectCategory(ownProps.match.params.categoryId)(state)
+const mapStateToProps = (state, ownProps) => ({
+    categoryCollection: selectCategory(ownProps.match.params.categoryId)(state)
 })
 
 export default connect(mapStateToProps)(CategoryPage);
