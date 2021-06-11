@@ -3,7 +3,7 @@ import { Route, Switch , Redirect } from 'react-router-dom';
 import HomePage from './pages/homepage/homepage.component';
 import Shop from './pages/shop/shop.component';
 import Header from './component/header/header.component';
-import SignInUp from './component/signinup/signinup.component';
+import SignInUp from './pages/signinup/signinup.component'
 import { auth, createUserProfileDoc } from './firebase/firebase.utils';
 import { Component } from 'react';
 import { setCurrentUser } from './redux/users/user.action';
