@@ -1,6 +1,6 @@
 .menu-item{
     min-width: 32%;
-    height: 280px;
+    height: 240px;
     flex: 1 1 auto;
     display: flex;
     align-items: center;
@@ -26,10 +26,10 @@
         height: 380px;
     }
     &:first-child{
-        margin-right: 7.5px;
+        margin-right: 0.6vw;
     }
     &:last-child{
-        margin-left: 7.5px;
+        margin-left: 1vw;
     }
 
     .background-image{
@@ -41,8 +41,8 @@
 
     .content{
         position: absolute;
-        height: 90px;
-        padding:0 25px;
+        height: 10vh;
+        padding:0 2vw;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -55,12 +55,12 @@
 
     .title{
         font-weight: bold;
-        margin-bottom: 6px;
-        font-size: 22px;
+        margin-bottom:0.2vh;
+        font-size: 1.4rem;
         color: #4a4a4a;
     }
     .subtitle{
         font-weight: lighter;
-        font-size: 16px;
+        font-size: 1rem;
     }
 }

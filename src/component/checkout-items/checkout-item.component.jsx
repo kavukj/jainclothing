@@ -1,32 +1,39 @@
 import React from 'react';
 import './checkout-item.styles.scss';
-import {clearItem } from '../../redux/cart/cart.action';
+import { clearItem } from '../../redux/cart/cart.action';
 import { connect } from 'react-redux';
 import { increaseItem, decreaseItem } from '../../redux/cart/cart.action';
+import {
+    CheckoutItemContainer,
+    ImageContainer,
+    TextContainer,
+    QuantityContainer,
+    RemoveButtonContainer
+} from './checkout-item.styles';
 
-const CheckoutItem = ({cartItem, clearItem,increaseItem, decreaseItem}) => {
-    const {imageUrl,price,name,quantity} = cartItem;
-    return(
-        <div className="checkout-item">
-            <div className="image-container">
-                <img src={imageUrl} alt="Item"/>
-            </div>
-            <span className="name">{name}</span>
-            <div className="quantity">
-                <span className="arrow" onClick={()=> decreaseItem(cartItem)}>&#10094;</span>
+const CheckoutItem = ({ cartItem, clearItem, increaseItem, decreaseItem }) => {
+    const { imageUrl, price, name, quantity } = cartItem;
+    return (
+        <CheckoutItemContainer>
+            <ImageContainer>
+                <img src={imageUrl} alt='item'></img>
+            </ImageContainer>
+            <TextContainer>{name}</TextContainer>
+            <QuantityContainer>
+                <div className="arrow" onClick={() => decreaseItem(cartItem)}>&#10094;</div>
                 <span className="value">{quantity}</span>
-                <span className="arrow" onClick={()=> increaseItem(cartItem)}>&#10095;</span>
-            </div>
+                <div className="arrow" onClick={() => increaseItem(cartItem)}>&#10095;</div>
+            </QuantityContainer>
             <span className="price">{price}</span>
-            <span className="remove-button" onClick={()=>clearItem(cartItem)}>&#10005;</span>
-        </div>
+            <RemoveButtonContainer onClick={() => clearItem(cartItem)}>&#10005;</RemoveButtonContainer>
+        </CheckoutItemContainer>
     )
 }
 
 const mapDispatchToProps = dispatch => ({
     clearItem: item => dispatch(clearItem(item)),
     increaseItem: item => dispatch(increaseItem(item)),
-    decreaseItem : item => dispatch(decreaseItem(item))
+    decreaseItem: item => dispatch(decreaseItem(item))
 })
 
-export default connect(null,mapDispatchToProps)(CheckoutItem);
+export default connect(null, mapDispatchToProps)(CheckoutItem);
