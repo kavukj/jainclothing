@@ -41,8 +41,9 @@ export const BackgroundImageContainer = styled.div`
 `;
 
 export const ContentContainer = styled.div`
-  height: 90px;
-  padding: 0 25px;
+  height: 12vh;
+  width:18vw;
+  padding: 0 1vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -55,12 +56,12 @@ export const ContentContainer = styled.div`
 
 export const ContentTitle = styled.span`
   font-weight: bold;
-  margin-bottom: 6px;
+  margin-bottom: 0.1vh;
   font-size: 22px;
   color: #4a4a4a;
 `;
 
 export const ContentSubtitle = styled.span`
   font-weight: lighter;
-  font-size: 16px;
+  font-size: 1rem;
 `;

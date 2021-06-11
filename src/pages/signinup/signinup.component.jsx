@@ -9,6 +9,6 @@ const SignInUp = () => (
        <SignIn />
        <SignUp />
        </SignInAndSignUpContainer>
-) 
+)   
 
 export default SignInUp;
